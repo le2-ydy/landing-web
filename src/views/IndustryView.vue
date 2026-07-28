@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, Check, Clock3 } from "lucide-vue-next";
 import { computed, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import CtaBand from "../components/CtaBand.vue";
-import { openDemo } from "../config";
+import { openDemo, siteConfig } from "../config";
 import { industries } from "../data";
 
 const route = useRoute();
@@ -11,8 +11,8 @@ const industry = computed(() => industries.find((item) => item.slug === route.pa
 const related = computed(() => industries.filter((item) => item.slug !== industry.value.slug).slice(0, 3));
 
 watchEffect(() => {
-  const title = `${industry.value.name}解决方案 | ZUYU`;
-  const description = `${industry.value.summary} ZUYU 提供贴合${industry.value.shortName}现场的预约、履约、会员与经营管理。`;
+  const title = `${industry.value.name}解决方案 | ${siteConfig.brand}`;
+  const description = `${industry.value.summary} ${siteConfig.brand}提供贴合${industry.value.shortName}现场的预约、履约、会员与经营管理。`;
   document.title = title;
   document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", description);
   document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute("content", title);
@@ -81,6 +81,6 @@ watchEffect(() => {
         </RouterLink>
       </div>
     </section>
-    <CtaBand :title="`看看 ZUYU 如何适配${industry.name}`" description="带着现有排班、项目和会员流程来，我们按真实场景演示。" />
+    <CtaBand :title="`看看${siteConfig.brand}如何适配${industry.name}`" description="带着现有排班、项目和会员流程来，我们按真实场景演示。" />
   </div>
 </template>

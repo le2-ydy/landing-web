@@ -141,12 +141,13 @@ ul {
   width: 34px;
   height: 34px;
   place-items: center;
-  border-radius: 4px;
-  background: var(--charcoal);
-  color: #fff;
-  font-family: Georgia, serif;
-  font-size: 18px;
-  font-style: italic;
+  flex: 0 0 auto;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .brand-copy {
@@ -584,12 +585,16 @@ ul {
   display: grid;
   width: 34px;
   height: 34px;
+  padding: 5px;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
-  color: #fff;
-  font-family: Georgia, serif;
-  font-style: italic;
+  background: var(--porcelain);
+}
+
+.console-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .console-nav-dot {
@@ -1749,13 +1754,15 @@ ul {
 
 .about-wordmark {
   display: flex;
-  align-items: end;
-  padding-bottom: 60px;
-  color: #c6d0cb;
-  font-family: var(--display);
-  font-size: 120px;
-  font-weight: 900;
-  writing-mode: vertical-rl;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-wordmark img {
+  width: min(70%, 270px);
+  aspect-ratio: 1;
+  opacity: 0.16;
+  object-fit: contain;
 }
 
 .about-intro {
@@ -1828,8 +1835,11 @@ ul {
 }
 
 .brand--footer .brand-mark {
-  background: #fff;
-  color: var(--charcoal);
+  width: 38px;
+  height: 38px;
+  padding: 5px;
+  border-radius: 4px;
+  background: var(--porcelain);
 }
 
 .brand--footer small {

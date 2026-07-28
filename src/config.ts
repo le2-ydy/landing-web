@@ -1,6 +1,7 @@
 export const siteConfig = {
-  brand: "ZUYU",
+  brand: "悦店云",
   descriptor: "门店经营平台",
+  logoUrl: "/brand/yuedianyun-logo.png",
   wecomQrUrl: "",
   wecomAvailable: false,
   contactPhone: "400-800-2026",

@@ -38,8 +38,8 @@ onBeforeUnmount(() => {
 <template>
   <header class="site-header">
     <div class="header-inner">
-      <RouterLink class="brand" to="/" aria-label="ZUYU 首页">
-        <span class="brand-mark">Z</span>
+      <RouterLink class="brand" to="/" :aria-label="`${siteConfig.brand}首页`">
+        <span class="brand-mark"><img :src="siteConfig.logoUrl" alt="" /></span>
         <span class="brand-copy">
           <strong>{{ siteConfig.brand }}</strong>
           <small>{{ siteConfig.descriptor }}</small>

@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
           </a>
         </div>
         <div v-if="siteConfig.wecomAvailable && siteConfig.wecomQrUrl" class="qr-panel">
-          <img :src="siteConfig.wecomQrUrl" alt="添加 ZUYU 产品顾问企业微信" />
+          <img :src="siteConfig.wecomQrUrl" :alt="`添加${siteConfig.brand}产品顾问企业微信`" />
           <strong>企业微信咨询</strong>
           <span>扫码添加产品顾问</span>
         </div>

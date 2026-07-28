@@ -9,7 +9,7 @@ import { industries } from "../data";
     <div class="footer-main">
       <div class="footer-brand">
         <div class="brand brand--footer">
-          <span class="brand-mark">Z</span>
+          <span class="brand-mark"><img :src="siteConfig.logoUrl" alt="" /></span>
           <span class="brand-copy"><strong>{{ siteConfig.brand }}</strong><small>{{ siteConfig.descriptor }}</small></span>
         </div>
         <p>为服务型门店整理预约、现场、会员与经营数据。</p>

@@ -10,6 +10,7 @@ import {
   WalletCards,
 } from "lucide-vue-next";
 import { computed, ref, watch } from "vue";
+import { siteConfig } from "../config";
 import { consoleViews, type ConsoleView } from "../data";
 
 const props = withDefaults(defineProps<{ initialView?: ConsoleView }>(), {
@@ -69,7 +70,7 @@ function onTabKeydown(event: KeyboardEvent, index: number) {
 <template>
   <div class="product-console" aria-label="门店经营工作台界面示意">
     <div class="console-sidebar" aria-hidden="true">
-      <div class="console-logo">Z</div>
+      <div class="console-logo"><img :src="siteConfig.logoUrl" alt="" /></div>
       <span class="console-nav-dot is-active" />
       <span class="console-nav-dot" />
       <span class="console-nav-dot" />
