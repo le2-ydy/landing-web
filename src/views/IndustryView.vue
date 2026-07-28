@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ArrowLeft, ArrowRight, Check, Clock3 } from "lucide-vue-next";
-import { computed, watchEffect } from "vue";
+import { computed } from "vue";
 import { useRoute } from "vue-router";
 import CtaBand from "../components/CtaBand.vue";
 import { openDemo, siteConfig } from "../config";
@@ -9,20 +9,20 @@ import { industries } from "../data";
 const route = useRoute();
 const industry = computed(() => industries.find((item) => item.slug === route.params.slug) ?? industries[0]);
 const related = computed(() => industries.filter((item) => item.slug !== industry.value.slug).slice(0, 3));
-
-watchEffect(() => {
-  const title = `${industry.value.name}解决方案 | ${siteConfig.brand}`;
-  const description = `${industry.value.summary} ${siteConfig.brand}提供贴合${industry.value.shortName}现场的预约、履约、会员与经营管理。`;
-  document.title = title;
-  document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", description);
-  document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute("content", title);
-  document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute("content", description);
-});
 </script>
 
 <template>
   <div :style="{ '--industry-accent': industry.accent }">
-    <section class="industry-hero" :style="{ backgroundImage: `url(${industry.heroImage})` }">
+    <section class="industry-hero">
+      <img
+        class="hero-media"
+        :src="industry.heroImage"
+        :alt="`${industry.name}服务空间`"
+        width="1200"
+        height="720"
+        fetchpriority="high"
+        decoding="async"
+      />
       <div class="hero-shade" />
       <div class="industry-hero-copy">
         <RouterLink class="back-link" to="/solutions"><ArrowLeft :size="16" /> 行业解决方案</RouterLink>

@@ -59,7 +59,7 @@ import detailImage from "../../../customer-uniapp_static/static/images/service-s
     </section>
 
     <section class="split-feature split-feature--reverse">
-      <div class="split-media"><img :src="detailImage" alt="门店服务使用的毛巾、精油和护理器具" /></div>
+      <div class="split-media"><img :src="detailImage" alt="门店服务使用的毛巾、精油和护理器具" width="1200" height="900" loading="lazy" decoding="async" /></div>
       <div class="split-copy">
         <span class="eyebrow">边界清楚，操作放心</span>
         <h2>该谁看、该谁改、发生了什么，都留有依据</h2>

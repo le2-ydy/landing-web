@@ -17,9 +17,13 @@ const signals = [
       <small>演示门店数据</small>
     </div>
     <div v-for="signal in signals" :key="signal.label" class="pulse-item">
-      <component :is="signal.icon" :size="18" />
-      <span>{{ signal.label }}</span>
-      <strong>{{ signal.value }}</strong>
+      <span class="pulse-icon" aria-hidden="true">
+        <component :is="signal.icon" :size="20" :stroke-width="1.8" />
+      </span>
+      <span class="pulse-copy">
+        <span>{{ signal.label }}</span>
+        <strong>{{ signal.value }}</strong>
+      </span>
       <small>{{ signal.change }}</small>
     </div>
   </div>

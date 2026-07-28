@@ -11,7 +11,16 @@ import serviceImage from "../../../customer-uniapp_static/static/images/therapy-
 
 <template>
   <div>
-    <section class="home-hero" :style="{ backgroundImage: `url(${heroImage})` }">
+    <section class="home-hero">
+      <img
+        class="hero-media"
+        :src="heroImage"
+        alt="安静有序的服务门店接待空间"
+        width="1200"
+        height="900"
+        fetchpriority="high"
+        decoding="async"
+      />
       <div class="hero-shade" />
       <div class="home-hero-content">
         <span class="hero-kicker">服务型门店经营平台</span>
@@ -65,7 +74,7 @@ import serviceImage from "../../../customer-uniapp_static/static/images/therapy-
 
     <section class="split-feature">
       <div class="split-media">
-        <img :src="serviceImage" alt="服务人员正在准备按摩房间" />
+        <img :src="serviceImage" alt="服务人员正在准备按摩房间" width="1200" height="900" loading="lazy" decoding="async" />
       </div>
       <div class="split-copy">
         <span class="eyebrow">懂系统，也懂门店现场</span>
@@ -96,7 +105,7 @@ import serviceImage from "../../../customer-uniapp_static/static/images/therapy-
           :style="{ '--industry-accent': industry.accent }"
         >
           <div class="industry-editorial-media">
-            <img :src="industry.heroImage" :alt="`${industry.name}经营空间示意`" />
+            <img :src="industry.heroImage" :alt="`${industry.name}经营空间示意`" width="1200" height="720" loading="lazy" decoding="async" />
             <span>{{ String(index + 1).padStart(2, "0") }}</span>
           </div>
           <div class="industry-editorial-copy">

@@ -8,7 +8,7 @@ import { industries, journey, moreIndustries } from "../data";
   <div>
     <section class="solution-mosaic-hero">
       <div class="solution-mosaic" aria-hidden="true">
-        <img v-for="industry in industries" :key="industry.slug" :src="industry.heroImage" alt="" />
+        <img v-for="industry in industries" :key="industry.slug" :src="industry.heroImage" alt="" width="1200" height="720" decoding="async" />
       </div>
       <div class="hero-shade" />
       <div class="image-page-hero-copy">
@@ -35,7 +35,7 @@ import { industries, journey, moreIndustries } from "../data";
           :style="{ '--industry-accent': industry.accent }"
         >
           <div class="solution-thumb">
-            <img :src="industry.heroImage" alt="" />
+            <img :src="industry.heroImage" alt="" width="1200" height="720" loading="lazy" decoding="async" />
             <span>{{ String(index + 1).padStart(2, "0") }}</span>
           </div>
           <component :is="industry.icon" :size="28" />

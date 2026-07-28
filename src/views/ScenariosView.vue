@@ -14,7 +14,7 @@ import heroImage from "../../../customer-uniapp_static/static/images/service-sti
         <p>这里不使用虚构客户和夸张收益，只展示服务门店常见的经营摩擦，以及系统如何参与解决。</p>
         <RouterLink class="button button--primary" to="/solutions">按行业查看方案 <ArrowRight :size="18" /></RouterLink>
       </div>
-      <div class="scenario-image"><img :src="heroImage" alt="门店服务使用的精油、艾灸与护理用品" /></div>
+      <div class="scenario-image"><img :src="heroImage" alt="门店服务使用的精油、艾灸与护理用品" width="1200" height="900" fetchpriority="high" decoding="async" /></div>
     </section>
 
     <section class="section scenario-list">

@@ -4,8 +4,10 @@ import { RouterView } from "vue-router";
 import DemoModal from "./components/DemoModal.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 import SiteHeader from "./components/SiteHeader.vue";
+import { useRouteSeo } from "./seo";
 
 const demoOpen = ref(false);
+useRouteSeo();
 
 function openDemo() {
   demoOpen.value = true;

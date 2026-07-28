@@ -23,7 +23,7 @@ const principles = [
       </div>
     </section>
 
-    <section class="about-image-band"><img :src="image" alt="服务人员正在整理按摩床和毛巾" /></section>
+    <section class="about-image-band"><img :src="image" alt="服务人员正在整理按摩床和毛巾" width="1200" height="900" loading="lazy" decoding="async" /></section>
 
     <section class="section about-mission">
       <div>
