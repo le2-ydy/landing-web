@@ -2,7 +2,7 @@
 import { ArrowRight, Building2, Focus, Layers3, Route } from "lucide-vue-next";
 import { openDemo, siteConfig } from "../config";
 import CtaBand from "../components/CtaBand.vue";
-import image from "../../../customer-uniapp_static/static/images/therapy-hero.jpg";
+import image from "../assets/images/therapy-hero.jpg";
 
 const principles = [
   { title: "从现场动作出发", detail: "先理解接待、排班、服务和交接，再决定界面应该出现什么。", icon: Route },

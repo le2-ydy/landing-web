@@ -5,8 +5,8 @@ import { industries, journey } from "../data";
 import CtaBand from "../components/CtaBand.vue";
 import ProductConsole from "../components/ProductConsole.vue";
 import PulseRail from "../components/PulseRail.vue";
-import heroImage from "../../../customer-uniapp_static/static/images/store-interior.jpg";
-import serviceImage from "../../../customer-uniapp_static/static/images/therapy-hero.jpg";
+import heroImage from "../assets/images/store-interior.jpg";
+import serviceImage from "../assets/images/therapy-hero.jpg";
 </script>
 
 <template>

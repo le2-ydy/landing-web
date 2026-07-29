@@ -3,7 +3,7 @@ import { ArrowRight, Check, CircleCheckBig } from "lucide-vue-next";
 import CtaBand from "../components/CtaBand.vue";
 import ProductConsole from "../components/ProductConsole.vue";
 import { journey, productGroups } from "../data";
-import detailImage from "../../../customer-uniapp_static/static/images/service-still.jpg";
+import detailImage from "../assets/images/service-still.jpg";
 </script>
 
 <template>

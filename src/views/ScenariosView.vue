@@ -2,7 +2,7 @@
 import { ArrowRight, CheckCircle2, XCircle } from "lucide-vue-next";
 import CtaBand from "../components/CtaBand.vue";
 import { scenarioGroups } from "../data";
-import heroImage from "../../../customer-uniapp_static/static/images/service-still.jpg";
+import heroImage from "../assets/images/service-still.jpg";
 </script>
 
 <template>
