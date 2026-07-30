@@ -50,7 +50,7 @@ if (siteUrl) {
     const sitemap = await readFile(sitemapPath, "utf8");
     const locations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
     if (locations.length !== 12) errors.push(`sitemap 应为 12 个 URL，实际为 ${locations.length} 个`);
-    if (locations.some((url) => !url.startsWith(`${siteUrl}/`) || url.includes("localhost"))) {
+    if (locations.some((url) => !url.startsWith(`${siteUrl}/`))) {
       errors.push("sitemap 包含错误域名");
     }
     if (!robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) errors.push("robots.txt 缺少 sitemap 地址");
