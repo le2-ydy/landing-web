@@ -4,7 +4,7 @@ ARG IMAGE_PREFIX
 ARG VITE_SITE_URL
 
 # 依赖阶段仅复制锁文件，便于复用 npm ci 的构建缓存。
-FROM ${IMAGE_MIRROR:-${IMAGE_PREFIX}}node:latest AS dependencies
+FROM ${IMAGE_MIRROR:-${IMAGE_PREFIX}}node:alpine AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
