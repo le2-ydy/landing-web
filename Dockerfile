@@ -18,6 +18,9 @@ RUN npm run build
 
 # 运行阶段只保留 Nginx 配置和编译后的 dist 目录。
 FROM ${IMAGE_MIRROR:-${IMAGE_PREFIX}}nginx:latest AS production
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
