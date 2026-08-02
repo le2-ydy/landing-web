@@ -2,8 +2,14 @@
 .env
 .env.*
 .git
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+coverage
 dist
 node_modules
+npm-debug.log*
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
