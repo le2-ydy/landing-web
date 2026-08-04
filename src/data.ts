@@ -230,18 +230,148 @@ export const consoleViews: Array<{
   },
 ];
 
+export type CapabilityPreviewState = "normal" | "warning" | "muted";
+
 export const productGroups: Array<{
   title: string;
+  headline: string;
   description: string;
   icon: LucideIcon;
-  items: string[];
+  features: Array<{ title: string; description: string }>;
+  preview: {
+    eyebrow: string;
+    title: string;
+    rows: Array<{
+      label: string;
+      value: string;
+      detail: string;
+      state: CapabilityPreviewState;
+    }>;
+  };
 }> = [
-  { title: "预约与接待", description: "把线上预约和现场到店放进同一张营业日程。", icon: CalendarCheck, items: ["多渠道预约", "房间与技师库存", "核销与到店提醒"] },
-  { title: "现场与排班", description: "前台、钟房、房态和技师状态实时同步。", icon: Armchair, items: ["轮牌与点钟", "房态与资源", "请假调班"] },
-  { title: "收银与权益", description: "现金、微信、储值和疗程权益一次结清。", icon: Banknote, items: ["组合收银", "储值与疗程卡", "退款与对账"] },
-  { title: "会员与营销", description: "从顾客档案出发安排回访、优惠和复购。", icon: UsersRound, items: ["统一会员档案", "优惠券与积分", "分层回访"] },
-  { title: "业绩与财务", description: "项目、技师、门店和支付数据使用同一口径。", icon: ChartNoAxesCombined, items: ["技师业绩", "门店日结", "经营报表"] },
-  { title: "连锁与权限", description: "总部标准和门店操作边界清晰可追溯。", icon: ShieldCheck, items: ["多门店总览", "角色权限", "操作审计"] },
+  {
+    title: "预约与接待",
+    headline: "从顾客选时间，到前台确认到店，一张日程接住所有预约",
+    description: "线上预约、电话咨询和现场到店不再分散记录。前台按时间查看当天安排，也能及时发现技师、房间和项目时长之间的冲突。",
+    icon: CalendarCheck,
+    features: [
+      { title: "多入口统一接待", description: "顾客自主预约与门店代客开单进入同一营业日程，预约来源不同，现场安排保持一致。" },
+      { title: "可约资源同步校验", description: "营业时间、技师排班、服务时长和房间或床位容量共同决定可选时段。" },
+      { title: "到店节点持续跟进", description: "预约提醒、待到店、核销和爽约等状态清楚展示，交接时不用再翻聊天记录。" },
+    ],
+    preview: {
+      eyebrow: "今日接待",
+      title: "营业日程",
+      rows: [
+        { label: "14:00 · 肩颈舒缓", value: "已确认", detail: "李明 · 雅竹房", state: "normal" },
+        { label: "15:30 · 芳香护理", value: "待到店", detail: "王芳 · 兰庭房", state: "warning" },
+        { label: "16:20 · 足部养护", value: "现场开单", detail: "周师傅 · 足浴位 06", state: "muted" },
+      ],
+    },
+  },
+  {
+    title: "现场与排班",
+    headline: "高峰期不靠反复问人，现场变化每个岗位都看得到",
+    description: "前台、钟房和技师围绕同一份排班与现场状态工作。临时请假、房间维护和服务超时都能回到当天安排中处理。",
+    icon: Armchair,
+    features: [
+      { title: "排班先统一再发布", description: "按周集中安排班次，处理请假与调班；发布后的结果才进入顾客可预约时间。" },
+      { title: "轮牌、点钟与房态同步", description: "技师服务顺序、顾客指定和房间占用放在同一现场视角，减少口头确认。" },
+      { title: "技师只处理本人服务", description: "技师在移动工作台查看预约、开始与完成服务，门店操作与个人工作边界清楚。" },
+    ],
+    preview: {
+      eyebrow: "晚高峰现场",
+      title: "资源与人员状态",
+      rows: [
+        { label: "听雨房", value: "服务中", detail: "沉浸采耳 · 还需 32 分钟", state: "normal" },
+        { label: "足浴位 06", value: "待清洁", detail: "下一预约 16:20", state: "warning" },
+        { label: "王芳", value: "15:30 后空闲", detail: "今日已完成 3 单", state: "muted" },
+      ],
+    },
+  },
+  {
+    title: "收银与权益",
+    headline: "项目、权益和实收一起结清，退款也能回到原来的账",
+    description: "服务项目、会员权益和支付结果在一笔业务中核对。门店看得清应收与实收，财务也能沿着支付和退款记录复核差异。",
+    icon: Banknote,
+    features: [
+      { title: "多种方式完成收款", description: "微信、储值、赠送余额和项目礼卡按业务规则结算，现场收款结果即时回到订单。" },
+      { title: "权益按流水扣减", description: "储值、疗程次数、优惠券和积分的使用都有来源，取消或退款时按原记录返还。" },
+      { title: "退款与对账有依据", description: "支付、退款和异常处理分别留痕，门店日结可以定位到具体订单和资金记录。" },
+    ],
+    preview: {
+      eyebrow: "订单结算",
+      title: "芳香护理 · 90 分钟",
+      rows: [
+        { label: "服务项目", value: "¥368", detail: "会员价已匹配", state: "normal" },
+        { label: "储值余额", value: "-¥120", detail: "扣减记录已生成", state: "muted" },
+        { label: "微信实收", value: "¥248", detail: "支付成功 · 16:08", state: "normal" },
+        { label: "退款核对", value: "1 笔待处理", detail: "需财务确认原支付记录", state: "warning" },
+      ],
+    },
+  },
+  {
+    title: "会员与营销",
+    headline: "每次到店留下的不只是订单，还有下一次服务的依据",
+    description: "会员档案把消费、预约、权益与服务偏好放在一起。顾问从到期时间、剩余次数和最近到店找到真正需要联系的顾客。",
+    icon: UsersRound,
+    features: [
+      { title: "一份持续更新的会员档案", description: "顾客身份、到店记录、消费项目和服务偏好集中沉淀，跨次服务仍能接得上。" },
+      { title: "会员资产清楚可查", description: "储值余额、优惠券、积分、次卡和套餐卡分别展示来源、余额、次数与有效期。" },
+      { title: "按经营信号安排回访", description: "围绕疗程到期、权益余额和服务周期形成跟进名单，让联系动作有明确理由。" },
+    ],
+    preview: {
+      eyebrow: "今日待跟进",
+      title: "会员经营队列",
+      rows: [
+        { label: "陈女士", value: "7 天后到期", detail: "肩颈疗程剩余 2 次", state: "warning" },
+        { label: "周先生", value: "建议复约", detail: "上次足部养护距今 28 天", state: "normal" },
+        { label: "林女士", value: "权益可用", detail: "芳香护理券 1 张", state: "muted" },
+      ],
+    },
+  },
+  {
+    title: "业绩与财务",
+    headline: "从服务记录到日结报表，每个数字都能回到业务明细",
+    description: "收入、退款、服务完成和技师业绩使用明确口径。店长先看当日变化，财务再从异常数字回到订单、支付或服务记录。",
+    icon: ChartNoAxesCombined,
+    features: [
+      { title: "技师业绩按净额统计", description: "服务单数、金额、时长和评价按本人汇总，退款产生对应的负向调整，不计算虚构提成。" },
+      { title: "门店日结拆清资金组成", description: "支付、退款、服务收入和钱包消费组成分别汇总，跨日业务仍保留发生时间。" },
+      { title: "经营变化可以追到明细", description: "按门店、项目和时间查看趋势，异常金额保留处理状态与核对路径。" },
+    ],
+    preview: {
+      eyebrow: "8 月 3 日",
+      title: "门店日结",
+      rows: [
+        { label: "今日实收", value: "¥12,680", detail: "微信与会员余额支付", state: "normal" },
+        { label: "服务收入", value: "¥10,920", detail: "按已完成服务统计", state: "muted" },
+        { label: "退款流水", value: "2 笔", detail: "其中 1 笔等待核对", state: "warning" },
+        { label: "日结状态", value: "已生成", detail: "可查看订单与资金明细", state: "normal" },
+      ],
+    },
+  },
+  {
+    title: "连锁与权限",
+    headline: "总部统一标准，门店按职责执行，敏感动作都有记录",
+    description: "总部查看全局经营并维护统一口径，门店只处理授权范围内的日常业务。退款、导出和权限调整等敏感动作单独控制并留下记录。",
+    icon: ShieldCheck,
+    features: [
+      { title: "多门店使用统一经营口径", description: "总部按门店比较预约、会员、收入和业绩，差异数据可以继续查看业务明细。" },
+      { title: "角色与数据范围共同生效", description: "总部、店长、前台和财务按职责配置操作权限，门店关系决定可查看的数据范围。" },
+      { title: "关键操作持续可追溯", description: "退款审核、敏感导出、账号停用和权限变更记录操作人、时间、对象与原因。" },
+    ],
+    preview: {
+      eyebrow: "组织与审计",
+      title: "角色权限与操作记录",
+      rows: [
+        { label: "总部管理员", value: "全部门店", detail: "经营、会员与财务总览", state: "normal" },
+        { label: "门店前台", value: "本店业务", detail: "预约、接待与收款", state: "muted" },
+        { label: "财务角色", value: "单独授权", detail: "报表、退款审核与导出", state: "warning" },
+        { label: "最近操作", value: "16:24", detail: "角色权限调整 · 已记录", state: "normal" },
+      ],
+    },
+  },
 ];
 
 export const journey = [

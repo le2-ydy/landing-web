@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ArrowRight, Check, CircleCheckBig } from "lucide-vue-next";
+import { ArrowRight } from "lucide-vue-next";
 import CtaBand from "../components/CtaBand.vue";
 import ProductConsole from "../components/ProductConsole.vue";
-import { journey, productGroups } from "../data";
-import detailImage from "../assets/images/service-still.jpg";
+import { productGroups } from "../data";
 </script>
 
 <template>
@@ -19,56 +18,56 @@ import detailImage from "../assets/images/service-still.jpg";
       <span class="product-stage-note">产品界面与数据示意</span>
     </section>
 
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">能力地图</span>
-          <h2>覆盖服务门店的完整营业周期</h2>
-        </div>
-        <p>每个模块既能单独解决问题，也与上下游业务自然衔接。</p>
-      </div>
-      <div class="capability-list">
-        <article v-for="(group, index) in productGroups" :key="group.title" class="capability-row">
-          <div class="capability-number">{{ String(index + 1).padStart(2, "0") }}</div>
-          <component :is="group.icon" :size="27" />
-          <div class="capability-copy">
-            <h3>{{ group.title }}</h3>
-            <p>{{ group.description }}</p>
+    <section
+      v-for="(group, index) in productGroups"
+      :key="group.title"
+      class="capability-chapter"
+      :class="{ 'capability-chapter--soft': index % 2 === 1 }"
+    >
+      <div class="capability-chapter-inner" :class="{ 'capability-chapter-inner--reverse': index % 2 === 1 }">
+        <div class="capability-chapter-copy">
+          <div class="capability-chapter-label">
+            <span>{{ String(index + 1).padStart(2, "0") }}</span>
+            <component :is="group.icon" :size="20" aria-hidden="true" />
+            <strong>{{ group.title }}</strong>
           </div>
-          <ul>
-            <li v-for="item in group.items" :key="item"><Check :size="14" /> {{ item }}</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section--soft product-flow">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">数据随业务流动</span>
-          <h2>只在动作发生时记录一次</h2>
+          <h2>{{ group.headline }}</h2>
+          <p class="capability-chapter-intro">{{ group.description }}</p>
+          <div class="capability-feature-list">
+            <article v-for="(feature, featureIndex) in group.features" :key="feature.title">
+              <span>{{ String(featureIndex + 1).padStart(2, "0") }}</span>
+              <div>
+                <h3>{{ feature.title }}</h3>
+                <p>{{ feature.description }}</p>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
-      <div class="flow-track">
-        <div v-for="(step, index) in journey" :key="step.label" class="flow-node">
-          <CircleCheckBig :size="20" />
-          <div><strong>{{ step.label }}</strong><span>{{ step.detail }}</span></div>
-          <ArrowRight v-if="index < journey.length - 1" class="flow-arrow" :size="18" />
-        </div>
-      </div>
-    </section>
 
-    <section class="split-feature split-feature--reverse">
-      <div class="split-media"><img :src="detailImage" alt="门店服务使用的毛巾、精油和护理器具" width="1200" height="900" loading="lazy" decoding="async" /></div>
-      <div class="split-copy">
-        <span class="eyebrow">边界清楚，操作放心</span>
-        <h2>该谁看、该谁改、发生了什么，都留有依据</h2>
-        <p>总部、店长、前台、财务和技师按职责使用对应信息。退款、调价、权限调整等关键操作保留记录，方便日常核对。</p>
-        <ul class="plain-checks">
-          <li><Check :size="17" /> 角色与门店数据范围</li>
-          <li><Check :size="17" /> 敏感操作权限控制</li>
-          <li><Check :size="17" /> 业务记录与操作审计</li>
-        </ul>
+        <aside class="capability-preview" :aria-label="`${group.title}业务状态示意`">
+          <div class="capability-preview-header">
+            <div>
+              <span>{{ group.preview.eyebrow }}</span>
+              <h3>{{ group.preview.title }}</h3>
+            </div>
+            <small>业务状态</small>
+          </div>
+          <div class="capability-preview-rows">
+            <div
+              v-for="row in group.preview.rows"
+              :key="`${row.label}-${row.value}`"
+              class="capability-preview-row"
+              :class="`capability-preview-row--${row.state}`"
+            >
+              <span class="capability-status-dot" aria-hidden="true" />
+              <div>
+                <strong>{{ row.label }}</strong>
+                <span>{{ row.detail }}</span>
+              </div>
+              <b>{{ row.value }}</b>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
     <CtaBand title="带着你的门店流程来看产品" description="演示不从功能清单开始，从你每天最忙的环节开始。" />
