@@ -19,7 +19,7 @@ concurrency:
 env:
     IMAGE_REGISTRY: ${{ vars.IMAGE_REGISTRY }}
     IMAGE_NAMESPACE: ${{ vars.IMAGE_NAMESPACE }}
-    IMAGE_NAME:
+    IMAGE_NAME: ${{ vars.IMAGE_NAME }}
 
 jobs:
     meta:
