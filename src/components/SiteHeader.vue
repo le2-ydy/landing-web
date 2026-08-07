@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronDown, Menu, X } from "lucide-vue-next";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-vue-next";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { openDemo, siteConfig } from "../config";
@@ -69,6 +69,16 @@ onBeforeUnmount(() => {
         <RouterLink to="/about">关于</RouterLink>
       </nav>
 
+      <a
+        v-if="siteConfig.demoUrl"
+        class="header-demo-link"
+        :href="siteConfig.demoUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="在线体验（在新标签页打开）"
+      >
+        在线体验 <ArrowUpRight :size="15" aria-hidden="true" />
+      </a>
       <button class="button button--primary header-cta" @click="openDemo">预约演示</button>
       <button
         class="mobile-menu-button"
@@ -91,6 +101,16 @@ onBeforeUnmount(() => {
       <RouterLink to="/scenarios">经营场景</RouterLink>
       <RouterLink to="/pricing">产品价格</RouterLink>
       <RouterLink to="/about">关于平台</RouterLink>
+      <a
+        v-if="siteConfig.demoUrl"
+        class="mobile-demo-link"
+        :href="siteConfig.demoUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="在线体验（在新标签页打开）"
+      >
+        在线体验 <ArrowUpRight :size="15" aria-hidden="true" />
+      </a>
       <button class="button button--primary" @click="openDemo">预约演示</button>
     </nav>
   </header>

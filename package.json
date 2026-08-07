@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "vue-tsc -b",
-    "build": "vue-tsc -b && vite build && node scripts/generate-seo.mjs && node scripts/check-seo.mjs",
-    "seo:check": "node scripts/check-seo.mjs",
+    "build": "vue-tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

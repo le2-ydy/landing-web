@@ -14,10 +14,8 @@ RUN --mount=type=cache,target=/root/.npm \
     fi; \
     npm ci --no-audit --no-fund
 
-# 构建阶段注入站点地址；站点所需图片由自身源码管理。
+# 构建阶段从仓库内的 .env.production 读取正式地址；站点所需图片由自身源码管理。
 FROM dependencies AS build
-ARG VITE_SITE_URL
-ENV VITE_SITE_URL=${VITE_SITE_URL}
 COPY . ./
 RUN npm run build
 

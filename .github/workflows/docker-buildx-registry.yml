@@ -72,8 +72,6 @@ jobs:
               with:
                   context: .
                   file: ./Dockerfile
-                  build-args: |
-                      APP_ENV=production
                   platforms: ${{ matrix.platform }} # 原生构建，无 QEMU
                   push: ${{ github.event_name != 'pull_request' }}
                   # 临时标签，用于后续合成 manifest
