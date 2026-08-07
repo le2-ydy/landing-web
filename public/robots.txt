@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://yue.le2.ltd/sitemap.xml

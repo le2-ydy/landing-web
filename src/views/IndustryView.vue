@@ -1,14 +1,25 @@
 <script setup lang="ts">
 import { ArrowLeft, ArrowRight, Check, Clock3 } from "lucide-vue-next";
 import { computed } from "vue";
-import { useRoute } from "vue-router";
 import CtaBand from "../components/CtaBand.vue";
 import { openDemo, siteConfig } from "../config";
 import { industries } from "../data";
+import { usePageSeo } from "../seo";
 
-const route = useRoute();
-const industry = computed(() => industries.find((item) => item.slug === route.params.slug) ?? industries[0]);
+const props = defineProps<{ slug: string }>();
+const industry = computed(() => industries.find((item) => item.slug === props.slug) ?? industries[0]);
 const related = computed(() => industries.filter((item) => item.slug !== industry.value.slug).slice(0, 3));
+
+usePageSeo(() => ({
+  path: `/solutions/${industry.value.slug}`,
+  title: industry.value.seoTitle,
+  description: industry.value.seoDescription,
+  breadcrumbs: [
+    { name: "首页", path: "/" },
+    { name: "行业解决方案", path: "/solutions" },
+    { name: industry.value.name, path: `/solutions/${industry.value.slug}` },
+  ],
+}));
 </script>
 
 <template>
@@ -31,7 +42,7 @@ const related = computed(() => industries.filter((item) => item.slug !== industr
         <p>{{ industry.summary }}</p>
         <div class="hero-actions">
           <button class="button button--light" @click="openDemo">
-            预约方案演示 <ArrowRight :size="18" />
+            联系产品顾问 <ArrowRight :size="18" />
           </button>
         </div>
       </div>
@@ -81,6 +92,6 @@ const related = computed(() => industries.filter((item) => item.slug !== industr
         </RouterLink>
       </div>
     </section>
-    <CtaBand :title="`看看${siteConfig.brand}如何适配${industry.name}`" description="带着现有排班、项目和会员流程来，我们按真实场景演示。" />
+    <CtaBand :title="`看看${siteConfig.brand}如何适配${industry.name}`" description="带着现有排班、项目和会员流程来，产品顾问会按真实场景沟通。" />
   </div>
 </template>

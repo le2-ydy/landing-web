@@ -3,6 +3,17 @@ import { ArrowRight, Check, Minus } from "lucide-vue-next";
 import CtaBand from "../components/CtaBand.vue";
 import { openDemo, siteConfig } from "../config";
 import { pricingFeatures } from "../data";
+import { usePageSeo } from "../seo";
+
+usePageSeo({
+  path: "/pricing",
+  title: `门店管理系统价格：¥${siteConfig.pricing.store}/月起｜悦店云`,
+  description: `查看悦店云门店管理系统价格：门店版¥${siteConfig.pricing.store}/月，连锁版¥${siteConfig.pricing.chain}/月起，并提供适合复杂组织的企业定制版。`,
+  breadcrumbs: [
+    { name: "首页", path: "/" },
+    { name: "产品价格", path: "/pricing" },
+  ],
+});
 
 const comparison = [
   ["预约、收银与现场管理", true, true, true],
@@ -29,7 +40,7 @@ const comparison = [
           <h2>一家店，先把每天经营理顺</h2>
           <div class="price"><small>¥</small><strong>{{ siteConfig.pricing.store }}</strong><span>/ 月</span></div>
           <p>适合单店足浴、SPA、按摩、采耳与调理门店。</p>
-          <button class="button button--secondary" @click="openDemo">预约方案演示 <ArrowRight :size="17" /></button>
+          <button class="button button--secondary" @click="openDemo">联系产品顾问 <ArrowRight :size="17" /></button>
           <ul><li v-for="item in pricingFeatures.store" :key="item"><Check :size="15" /> {{ item }}</li></ul>
         </article>
 
@@ -39,7 +50,7 @@ const comparison = [
           <h2>多家店，用一套标准协同</h2>
           <div class="price"><small>¥</small><strong>{{ siteConfig.pricing.chain }}</strong><span>/ 月起</span></div>
           <p>适合成长型连锁与需要总部管理的综合养生会所。</p>
-          <button class="button button--primary" @click="openDemo">预约方案演示 <ArrowRight :size="17" /></button>
+          <button class="button button--primary" @click="openDemo">联系产品顾问 <ArrowRight :size="17" /></button>
           <ul><li v-for="item in pricingFeatures.chain" :key="item"><Check :size="15" /> {{ item }}</li></ul>
         </article>
 
@@ -48,7 +59,7 @@ const comparison = [
           <h2>复杂组织，按实际需求规划</h2>
           <div class="price price--custom"><strong>定制报价</strong></div>
           <p>适合大型连锁、复杂权限或有专属实施要求的组织。</p>
-          <button class="button button--secondary" @click="openDemo">预约方案演示 <ArrowRight :size="17" /></button>
+          <button class="button button--secondary" @click="openDemo">联系产品顾问 <ArrowRight :size="17" /></button>
           <ul><li v-for="item in pricingFeatures.enterprise" :key="item"><Check :size="15" /> {{ item }}</li></ul>
         </article>
       </div>
@@ -67,11 +78,13 @@ const comparison = [
         <div v-for="row in comparison" :key="row[0]" class="comparison-row" role="row">
           <span role="cell">{{ row[0] }}</span>
           <span v-for="(value, index) in row.slice(1)" :key="index" role="cell">
-            <Check v-if="value" :size="17" /><Minus v-else :size="17" />
+            <Check v-if="value" :size="17" aria-hidden="true" />
+            <Minus v-else :size="17" aria-hidden="true" />
+            <span class="sr-only">{{ value ? "包含" : "不包含" }}</span>
           </span>
         </div>
       </div>
     </section>
-    <CtaBand title="价格清楚，是否合适还要看流程" description="预约一次演示，确认版本是否覆盖你的门店规模和经营方式。" />
+    <CtaBand title="价格清楚，是否合适还要看流程" description="联系产品顾问，确认版本是否覆盖你的门店规模和经营方式。" />
   </div>
 </template>

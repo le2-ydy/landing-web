@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { ArrowLeft, LayoutGrid } from "lucide-vue-next";
+import { usePageSeo } from "../seo";
+
+usePageSeo({
+  path: "/404",
+  title: "页面未找到｜悦店云",
+  description: "没有找到你访问的页面。返回悦店云首页，或继续查看产品能力与行业解决方案。",
+  robots: "noindex, nofollow",
+});
 </script>
 
 <template>

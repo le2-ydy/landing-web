@@ -26,7 +26,7 @@ $icon-cell-radius: 4px;
   --mist: #dde3e0;
   --line: #d5ddda;
   --muted: #64716c;
-  --soft-text: #89948f;
+  --soft-text: #64716c;
   --display: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
   --numeric: "DIN Condensed", "Arial Narrow", Inter, sans-serif;
   --body: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
@@ -43,6 +43,7 @@ $icon-cell-radius: 4px;
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
@@ -121,6 +122,21 @@ ul {
   transform: translateY(0);
 }
 
+#main-content:focus {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 :focus-visible {
   outline: 3px solid #d6a75b;
   outline-offset: 3px;
@@ -146,6 +162,7 @@ ul {
 
 .brand {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 11px;
   flex: 0 0 auto;
@@ -235,7 +252,7 @@ ul {
   a {
     display: flex;
     align-items: center;
-    min-height: 42px;
+    min-height: 44px;
     padding: 8px 10px;
     gap: 9px;
     border-radius: 4px;
@@ -381,6 +398,7 @@ ul {
 
 .text-link {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 7px;
   color: var(--pine);
@@ -1596,6 +1614,7 @@ ul {
 }
 
 .comparison-section {
+  overflow-x: hidden;
   padding-top: 20px;
 }
 
@@ -1926,6 +1945,9 @@ ul {
     z-index: 1;
     top: 12px;
     right: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+    color: var(--charcoal);
   }
 
   .modal-copy {
@@ -2025,7 +2047,7 @@ ul {
     font-size: 14px;
   }
   .mobile-nav .mobile-sub-link {
-    min-height: 38px;
+    min-height: 44px;
     padding-left: 18px;
     color: var(--muted);
     font-size: 12px;
@@ -2599,7 +2621,7 @@ ul {
 
 .console-tabs button {
   min-width: 88px;
-  min-height: 32px;
+  min-height: 44px;
   padding: 0 12px;
   border-radius: 3px;
   background: transparent;
@@ -3167,6 +3189,9 @@ ul {
 .text-link,
 .back-link,
 .footer-column a {
+  min-height: 44px;
+  align-items: center;
+
   svg {
     flex: 0 0 auto;
   }

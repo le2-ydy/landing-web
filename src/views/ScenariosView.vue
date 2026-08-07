@@ -3,6 +3,17 @@ import { ArrowRight, CheckCircle2, XCircle } from "lucide-vue-next";
 import CtaBand from "../components/CtaBand.vue";
 import { scenarioGroups } from "../data";
 import heroImage from "../assets/images/service-still.jpg";
+import { usePageSeo } from "../seo";
+
+usePageSeo({
+  path: "/scenarios",
+  title: "服务门店经营场景：排班、会员与对账｜悦店云",
+  description: "从晚高峰接待、疗程到期跟进、连锁经营复盘和技师业绩核对，了解悦店云如何解决常见门店经营摩擦。",
+  breadcrumbs: [
+    { name: "首页", path: "/" },
+    { name: "经营场景", path: "/scenarios" },
+  ],
+});
 </script>
 
 <template>

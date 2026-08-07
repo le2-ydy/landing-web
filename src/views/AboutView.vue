@@ -3,6 +3,17 @@ import { ArrowRight, Building2, Focus, Layers3, Route } from "lucide-vue-next";
 import { openDemo, siteConfig } from "../config";
 import CtaBand from "../components/CtaBand.vue";
 import image from "../assets/images/therapy-hero.jpg";
+import { usePageSeo } from "../seo";
+
+usePageSeo({
+  path: "/about",
+  title: "关于悦店云｜服务型门店经营平台",
+  description: "悦店云专注足浴、SPA、按摩养生等服务型门店，连接预约、现场、会员、财务与多门店经营数据。",
+  breadcrumbs: [
+    { name: "首页", path: "/" },
+    { name: "关于悦店云", path: "/about" },
+  ],
+});
 
 const principles = [
   { title: "从现场动作出发", detail: "先理解接待、排班、服务和交接，再决定界面应该出现什么。", icon: Route },
@@ -19,7 +30,7 @@ const principles = [
         <span class="eyebrow">关于平台</span>
         <h1>让好服务，<br />被更好的经营托住</h1>
         <p>{{ siteConfig.brand }}专注服务型门店，把预约、现场、会员与经营数据连接起来，让一线更从容，让管理更清楚。</p>
-        <button class="button button--primary" @click="openDemo">预约产品演示 <ArrowRight :size="18" /></button>
+        <button class="button button--primary" @click="openDemo">联系产品顾问 <ArrowRight :size="18" /></button>
       </div>
     </section>
 

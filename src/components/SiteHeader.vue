@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-vue-next";
-import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { openDemo, siteConfig } from "../config";
 import { industries } from "../data";
 
 const route = useRoute();
+const emit = defineEmits<{ "navigation-state": [value: boolean] }>();
 const mobileOpen = ref(false);
 const solutionsOpen = ref(false);
+const mobileMenuButton = ref<HTMLButtonElement | null>(null);
+const mobileNavigation = ref<HTMLElement | null>(null);
 
 watch(
   () => route.fullPath,
@@ -17,14 +20,23 @@ watch(
   },
 );
 
-watch(mobileOpen, (open) => {
+watch(mobileOpen, async (open) => {
   document.body.classList.toggle("nav-open", open);
+  emit("navigation-state", open);
+  if (open) {
+    await nextTick();
+    mobileNavigation.value?.querySelector<HTMLElement>("a, button")?.focus();
+  }
 });
 
 function handleKeydown(event: KeyboardEvent) {
   if (event.key === "Escape") {
+    const restoreMenuFocus = mobileOpen.value;
     mobileOpen.value = false;
     solutionsOpen.value = false;
+    if (restoreMenuFocus) {
+      void nextTick(() => mobileMenuButton.value?.focus());
+    }
   }
 }
 
@@ -32,6 +44,7 @@ onMounted(() => window.addEventListener("keydown", handleKeydown));
 onBeforeUnmount(() => {
   window.removeEventListener("keydown", handleKeydown);
   document.body.classList.remove("nav-open");
+  emit("navigation-state", false);
 });
 </script>
 
@@ -79,8 +92,9 @@ onBeforeUnmount(() => {
       >
         在线体验 <ArrowUpRight :size="15" aria-hidden="true" />
       </a>
-      <button class="button button--primary header-cta" @click="openDemo">预约演示</button>
+      <button class="button button--primary header-cta" @click="openDemo">联系产品顾问</button>
       <button
+        ref="mobileMenuButton"
         class="mobile-menu-button"
         :aria-label="mobileOpen ? '关闭导航' : '打开导航'"
         :aria-expanded="mobileOpen"
@@ -92,7 +106,7 @@ onBeforeUnmount(() => {
       </button>
     </div>
 
-    <nav v-if="mobileOpen" id="mobile-navigation" class="mobile-nav" aria-label="移动导航">
+    <nav v-if="mobileOpen" id="mobile-navigation" ref="mobileNavigation" class="mobile-nav" aria-label="移动导航">
       <RouterLink to="/product">产品能力</RouterLink>
       <RouterLink to="/solutions">解决方案</RouterLink>
       <RouterLink v-for="industry in industries" :key="industry.slug" class="mobile-sub-link" :to="`/solutions/${industry.slug}`">
@@ -111,7 +125,7 @@ onBeforeUnmount(() => {
       >
         在线体验 <ArrowUpRight :size="15" aria-hidden="true" />
       </a>
-      <button class="button button--primary" @click="openDemo">预约演示</button>
+      <button class="button button--primary" @click="openDemo">联系产品顾问</button>
     </nav>
   </header>
 </template>

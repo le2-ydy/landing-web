@@ -1,7 +1,20 @@
-import { createApp } from "vue";
-import { createHead } from "@unhead/vue/client";
+import { nextTick } from "vue";
+import { ViteSSG } from "vite-ssg";
+import { START_LOCATION } from "vue-router";
 import App from "./App.vue";
-import router from "./router";
+import { routes, scrollBehavior } from "./router";
 import "./styles.scss";
 
-createApp(App).use(router).use(createHead()).mount("#app");
+export const createApp = ViteSSG(
+  App,
+  { routes, scrollBehavior },
+  ({ router }) => {
+    if (import.meta.env.SSR) return;
+
+    router.afterEach(async (_to, from) => {
+      if (from === START_LOCATION) return;
+      await nextTick();
+      document.querySelector<HTMLElement>("#main-content")?.focus({ preventScroll: true });
+    });
+  },
+);

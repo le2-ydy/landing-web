@@ -40,6 +40,8 @@ export type Industry = {
   eyebrow: string;
   headline: string;
   summary: string;
+  seoTitle: string;
+  seoDescription: string;
   accent: string;
   heroImage: string;
   icon: LucideIcon;
@@ -57,6 +59,8 @@ export const industries: Industry[] = [
     eyebrow: "钟房与翻台协同",
     headline: "从排钟到结账，每个足浴位都清清楚楚",
     summary: "把轮牌、加钟、点钟、足浴位和收银放进同一条服务流程，前台少问一次，钟房少跑一趟。",
+    seoTitle: "足浴店管理系统：排钟、轮牌与收银｜悦店云",
+    seoDescription: "悦店云足浴店管理系统连接钟房排钟、智能轮牌、点钟加钟、足浴位房态、会员权益、收银与技师业绩。",
     accent: "#a57b45",
     heroImage: footbathHero,
     icon: Footprints,
@@ -81,6 +85,8 @@ export const industries: Industry[] = [
     eyebrow: "疗程与会员经营",
     headline: "把每一次护理，沉淀为下一次到店",
     summary: "从顾问接待、房间安排到疗程核销和会员跟进，让高质量服务和长期复购使用同一份顾客档案。",
+    seoTitle: "SPA美容院管理系统：疗程、房间与会员｜悦店云",
+    seoDescription: "悦店云SPA美容院管理系统覆盖顾问预约、护理房间、疗程核销、会员储值、到期回访与门店经营分析。",
     accent: "#8c3d48",
     heroImage: spaBeautyHero,
     icon: Sparkles,
@@ -105,6 +111,8 @@ export const industries: Industry[] = [
     eyebrow: "预约与技师排班",
     headline: "让顾客选得到时间，让门店排得开技师",
     summary: "项目时长、技师能力、房间资源和预约库存同步计算，减少撞单、空档和反复确认。",
+    seoTitle: "按摩店管理系统：预约、技师排班与履约｜悦店云",
+    seoDescription: "悦店云按摩店管理系统统一项目预约、技师能力与排班、房间资源、服务时长、到店履约、收银和会员复购。",
     accent: "#25637a",
     heroImage: massageHero,
     icon: HandPlatter,
@@ -129,6 +137,8 @@ export const industries: Industry[] = [
     eyebrow: "组合项目与包间",
     headline: "项目越细，前台越需要一套简单的安排方式",
     summary: "组合项目、技师手法、服务时长与包间状态统一管理，既保留服务特色，也守住高峰期的接待秩序。",
+    seoTitle: "采耳头疗门店管理系统：包间与复购｜悦店云",
+    seoDescription: "悦店云采耳头疗门店管理系统管理组合项目、技师手法、包间房态、服务时长、会员档案和周期复购。",
     accent: "#745f8d",
     heroImage: earHeadCareHero,
     icon: Ear,
@@ -153,6 +163,8 @@ export const industries: Industry[] = [
     eyebrow: "周期与资源设备",
     headline: "疗程有周期，经营也该有节奏",
     summary: "疗程卡、艾灸床、调理记录和下次预约形成闭环，让周期服务不再散落在纸本和聊天记录里。",
+    seoTitle: "艾灸经络调理门店管理系统：疗程与预约｜悦店云",
+    seoDescription: "悦店云为艾灸与经络调理门店管理疗程卡、设备资源、服务记录、预约周期、会员权益和门店经营数据。",
     accent: "#9b593d",
     heroImage: moxibustionHero,
     icon: Flame,
@@ -177,6 +189,8 @@ export const industries: Industry[] = [
     eyebrow: "总部与多门店",
     headline: "门店各自忙，总部仍然看得清",
     summary: "跨业态项目、统一会员、门店权限和经营报表集中管理，让总部掌握标准，也给一线留下足够效率。",
+    seoTitle: "连锁养生会所管理系统：多门店与统一会员｜悦店云",
+    seoDescription: "悦店云连锁养生会所管理系统支持跨业态项目、统一会员、多门店权限、总部报表、财务对账和经营复盘。",
     accent: "#18483a",
     heroImage: wellnessChainHero,
     icon: Blocks,

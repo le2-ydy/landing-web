@@ -1,38 +1,25 @@
 import { useHead } from "@unhead/vue";
-import { useRoute } from "vue-router";
+import { toValue, type MaybeRefOrGetter } from "vue";
 import { siteConfig } from "./config";
-import seoRoutesData from "./seo-routes.json";
 
 export type SeoBreadcrumb = {
   name: string;
   path: string;
 };
 
-export type SeoRoute = {
+export type PageSeo = {
   path: string;
   title: string;
   description: string;
-  image: string;
-  robots: string;
-  breadcrumbs: SeoBreadcrumb[];
-};
-
-export const seoRoutes = seoRoutesData as SeoRoute[];
-
-const fallbackSeo: SeoRoute = {
-  path: "/404",
-  title: `页面未找到｜${siteConfig.brand}`,
-  description: `没有找到你访问的页面。返回${siteConfig.brand}首页，或继续查看产品能力与行业解决方案。`,
-  image: "/brand/yuedianyun-share.jpg",
-  robots: "noindex, nofollow",
-  breadcrumbs: [],
+  robots?: string;
+  breadcrumbs?: SeoBreadcrumb[];
 };
 
 function absoluteUrl(path: string) {
   return siteConfig.siteUrl ? new URL(path, `${siteConfig.siteUrl}/`).toString() : "";
 }
 
-function buildStructuredData(seo: SeoRoute) {
+function buildStructuredData(seo: Required<PageSeo>) {
   if (!siteConfig.siteUrl || seo.robots.startsWith("noindex")) return [];
 
   if (seo.path === "/") {
@@ -75,7 +62,7 @@ function buildStructuredData(seo: SeoRoute) {
               {
                 "@type": "Offer",
                 name: "连锁版",
-                price: siteConfig.pricing.chain.replace(",", ""),
+                price: siteConfig.pricing.chain,
                 priceCurrency: "CNY",
                 url: `${siteConfig.siteUrl}/pricing`,
               },
@@ -100,14 +87,16 @@ function buildStructuredData(seo: SeoRoute) {
   ];
 }
 
-export function useRouteSeo() {
-  const route = useRoute();
-
+export function usePageSeo(source: MaybeRefOrGetter<PageSeo>) {
   useHead(() => {
-    const seo = seoRoutes.find((item) => item.path === route.path) ?? fallbackSeo;
+    const page = toValue(source);
+    const seo: Required<PageSeo> = {
+      robots: "index, follow",
+      breadcrumbs: [],
+      ...page,
+    };
     const canonical = absoluteUrl(seo.path);
-    const shareImage = absoluteUrl(seo.image) || seo.image;
-    const structuredData = buildStructuredData(seo);
+    const shareImage = absoluteUrl("/brand/yuedianyun-share.jpg") || "/brand/yuedianyun-share.jpg";
 
     return {
       title: seo.title,
@@ -137,7 +126,7 @@ export function useRouteSeo() {
           : []),
       ],
       link: canonical ? [{ rel: "canonical", href: canonical }] : [],
-      script: structuredData.map((value) => ({
+      script: buildStructuredData(seo).map((value) => ({
         type: "application/ld+json",
         textContent: JSON.stringify(value),
       })),

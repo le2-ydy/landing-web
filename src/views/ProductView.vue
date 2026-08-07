@@ -3,6 +3,17 @@ import { ArrowRight } from "lucide-vue-next";
 import CtaBand from "../components/CtaBand.vue";
 import ProductConsole from "../components/ProductConsole.vue";
 import { productGroups } from "../data";
+import { usePageSeo } from "../seo";
+
+usePageSeo({
+  path: "/product",
+  title: "门店预约收银与会员管理系统｜悦店云",
+  description: "查看悦店云如何连接预约接待、房间与技师排班、组合收银、会员储值、疗程卡、财务对账和多门店经营。",
+  breadcrumbs: [
+    { name: "首页", path: "/" },
+    { name: "产品能力", path: "/product" },
+  ],
+});
 </script>
 
 <template>

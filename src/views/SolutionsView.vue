@@ -2,6 +2,17 @@
 import { ArrowRight } from "lucide-vue-next";
 import CtaBand from "../components/CtaBand.vue";
 import { industries, journey, moreIndustries } from "../data";
+import { usePageSeo } from "../seo";
+
+usePageSeo({
+  path: "/solutions",
+  title: "足浴、SPA、按摩养生门店解决方案｜悦店云",
+  description: "面向足浴、SPA美容、按摩养生、采耳头疗、艾灸调理与连锁综合养生会所的数字化经营解决方案。",
+  breadcrumbs: [
+    { name: "首页", path: "/" },
+    { name: "行业解决方案", path: "/solutions" },
+  ],
+});
 </script>
 
 <template>

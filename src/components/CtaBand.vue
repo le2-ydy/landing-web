@@ -4,7 +4,7 @@ import { openDemo } from "../config";
 
 withDefaults(defineProps<{ title?: string; description?: string }>(), {
   title: "把门店的忙，变成看得见的秩序",
-  description: "预约一次产品演示，从你的实际经营流程开始。",
+  description: "联系产品顾问，从你的实际经营流程开始。",
 });
 </script>
 
@@ -15,6 +15,6 @@ withDefaults(defineProps<{ title?: string; description?: string }>(), {
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
     </div>
-    <button class="button button--light" @click="openDemo">预约产品演示 <ArrowRight :size="18" /></button>
+    <button class="button button--light" @click="openDemo">联系产品顾问 <ArrowRight :size="18" /></button>
   </section>
 </template>

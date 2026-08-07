@@ -7,6 +7,14 @@ import ProductConsole from "../components/ProductConsole.vue";
 import PulseRail from "../components/PulseRail.vue";
 import heroImage from "../assets/images/store-interior.jpg";
 import serviceImage from "../assets/images/therapy-hero.jpg";
+import { usePageSeo } from "../seo";
+
+usePageSeo({
+  path: "/",
+  title: "悦店云｜足浴、SPA、按摩门店管理系统",
+  description: "悦店云为足浴、SPA、美容美体、按摩养生等服务门店提供预约收银、房间与技师排班、会员经营和多门店管理。",
+  breadcrumbs: [{ name: "首页", path: "/" }],
+});
 </script>
 
 <template>
@@ -27,7 +35,7 @@ import serviceImage from "../assets/images/therapy-hero.jpg";
         <h1>门店越忙，<br />经营越要有序</h1>
         <p>把预约、房间、技师、收银和会员放在同一套经营节奏里。从一家店，到一组好门店。</p>
         <div class="hero-actions">
-          <button class="button button--light" @click="openDemo">预约产品演示 <ArrowRight :size="18" /></button>
+          <button class="button button--light" @click="openDemo">联系产品顾问 <ArrowRight :size="18" /></button>
           <RouterLink class="text-link text-link--light" to="/product">查看产品能力 <MoveRight :size="17" /></RouterLink>
         </div>
       </div>

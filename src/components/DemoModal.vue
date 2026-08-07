@@ -45,6 +45,7 @@ watch(
       closeButton.value?.focus();
     } else {
       document.body.classList.remove("modal-open");
+      await nextTick();
       if (previousFocus?.isConnected) previousFocus.focus();
     }
   },
@@ -60,14 +61,21 @@ onBeforeUnmount(() => {
 <template>
   <Teleport to="body">
     <div v-if="open" class="modal-backdrop" @mousedown.self="close">
-      <section ref="dialogRef" class="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-title">
-        <button ref="closeButton" class="icon-button modal-close" aria-label="关闭预约演示" @click="close">
+      <section
+        ref="dialogRef"
+        class="demo-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demo-title"
+        aria-describedby="demo-description"
+      >
+        <button ref="closeButton" class="icon-button modal-close" aria-label="关闭联系窗口" @click="close">
           <X :size="20" />
         </button>
         <div class="modal-copy">
-          <span class="eyebrow">预约产品演示</span>
-          <h2 id="demo-title">看看它如何适配你的门店</h2>
-          <p>从门店数量、服务流程和当前最耗时的环节开始沟通。</p>
+          <span class="eyebrow">联系产品顾问</span>
+          <h2 id="demo-title">聊聊你的门店经营方式</h2>
+          <p id="demo-description">扫码添加企业微信，从门店数量、服务流程和当前最耗时的环节开始沟通。</p>
           <a class="button button--primary modal-phone" :href="`tel:${siteConfig.contactPhone}`" v-if="siteConfig.contactPhone">
             <Phone :size="17" /> 电话咨询 {{ siteConfig.contactPhone }}
           </a>

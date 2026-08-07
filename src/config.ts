@@ -3,7 +3,8 @@ function normalizeUrl(value: string | undefined) {
 }
 
 const siteUrl = normalizeUrl(
-  import.meta.env.VITE_SITE_URL || (import.meta.env.DEV ? window.location.origin : ""),
+  import.meta.env.VITE_SITE_URL ||
+    (import.meta.env.DEV && typeof window !== "undefined" ? window.location.origin : ""),
 );
 const demoUrl = normalizeUrl(import.meta.env.VITE_DEMO_URL);
 
@@ -25,5 +26,7 @@ export const siteConfig = {
 };
 
 export function openDemo() {
-  window.dispatchEvent(new CustomEvent("open-demo"));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("open-demo"));
+  }
 }
