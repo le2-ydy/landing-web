@@ -15,12 +15,12 @@ export const siteConfig = {
   demoUrl,
   googleSiteVerification: (import.meta.env.VITE_GOOGLE_SITE_VERIFICATION ?? "").trim(),
   baiduSiteVerification: (import.meta.env.VITE_BAIDU_SITE_VERIFICATION ?? "").trim(),
-  wecomQrUrl: "",
-  wecomAvailable: false,
-  contactPhone: "400-800-2026",
+  wecomQrUrl: "/brand/wecom-contact-qr.png",
+  wecomAvailable: true,
+  contactPhone: "",
   pricing: {
-    store: "699",
-    chain: "1,999",
+    store: "199",
+    chain: "999",
   },
 };
 

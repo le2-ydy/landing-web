@@ -28,7 +28,7 @@ import { industries } from "../data";
       </div>
       <div class="footer-column">
         <strong>联系</strong>
-        <a :href="`tel:${siteConfig.contactPhone}`">{{ siteConfig.contactPhone }}</a>
+        <a v-if="siteConfig.contactPhone" :href="`tel:${siteConfig.contactPhone}`">{{ siteConfig.contactPhone }}</a>
         <RouterLink to="/about">关于平台</RouterLink>
         <a href="#main-content">返回顶部 <ArrowUpRight :size="14" /></a>
       </div>

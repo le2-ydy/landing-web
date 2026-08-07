@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
           <span class="eyebrow">预约产品演示</span>
           <h2 id="demo-title">看看它如何适配你的门店</h2>
           <p>从门店数量、服务流程和当前最耗时的环节开始沟通。</p>
-          <a class="button button--primary modal-phone" :href="`tel:${siteConfig.contactPhone}`">
+          <a class="button button--primary modal-phone" :href="`tel:${siteConfig.contactPhone}`" v-if="siteConfig.contactPhone">
             <Phone :size="17" /> 电话咨询 {{ siteConfig.contactPhone }}
           </a>
         </div>
